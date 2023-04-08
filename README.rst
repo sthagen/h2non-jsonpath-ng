@@ -187,30 +187,31 @@ Extras
 Extensions
 ----------
 
-+--------------+----------------------------------------------+
-| name         | Example                                      |
-+==============+==============================================+
-| len          | - $.objects.`len`                            |
-+--------------+----------------------------------------------+
-| sub          | - $.field.`sub(/foo\\\\+(.*)/, \\\\1)`       |
-+--------------+----------------------------------------------+
-| split        | - $.field.`split(+, 2, -1)`                  |
-|              | - $.field.`split(sep, segement, maxsplit)`   |
-+--------------+----------------------------------------------+
-| sorted       | - $.objects.`sorted`                         |
-|              | - $.objects[\\some_field]                    |
-|              | - $.objects[\\some_field,/other_field]       |
-+--------------+----------------------------------------------+
-| filter       | - $.objects[?(@some_field > 5)]              |
-|              | - $.objects[?some_field = "foobar")]         |
-|              | - $.objects[?some_field =~ "foobar")]        |
-|              | - $.objects[?some_field > 5 & other < 2)]    |
-+--------------+----------------------------------------------+
-| arithmetic   | - $.foo + "_" + $.bar                        |
-| (-+*/)       | - $.foo * 12                                 |
-|              | - $.objects[*].cow + $.objects[*].cat        |
-+--------------+----------------------------------------------+
-
++--------------+-----------------------------------------------+
+| name         | Example                                       |
++==============+===============================================+
+| len          | - ``$.objects.`len```                         |
++--------------+-----------------------------------------------+
+| sub          | - ``$.field.`sub(/foo\\\\+(.*)/, \\\\1)```    |
+|              | - ``$.field.`sub(/regex/, replacement)```     |
++--------------+-----------------------------------------------+
+| split        | - ``$.field.`split(+, 2, -1)```               |
+|              | - ``$.field.`split(sep, segement, maxsplit)```|
++--------------+-----------------------------------------------+
+| sorted       | - ``$.objects.`sorted```                      |
+|              | - ``$.objects[\\some_field]``                 |
+|              | - ``$.objects[\\some_field,/other_field]``    |
++--------------+-----------------------------------------------+
+| filter       | - ``$.objects[?(@some_field > 5)]``           |
+|              | - ``$.objects[?some_field = "foobar")]``      |
+|              | - ``$.objects[?some_field =~ "foobar")]``     |
+|              | - ``$.objects[?some_field > 5 & other < 2)]`` |
++--------------+-----------------------------------------------+
+| arithmetic   | - ``$.foo + "_" + $.bar``                     |
+| (-+*/)       | - ``$.foo * 12``                              |
+|              | - ``$.objects[*].cow + $.objects[*].cat``     |
++--------------+-----------------------------------------------+
+-
 About arithmetic and string
 ---------------------------
 
@@ -228,10 +229,10 @@ Example with data::
         'fish': 'bar'
     }
 
-| **cow + fish** returns **cowfish**
-| **$.cow + $.fish** returns **foobar**
-| **$.cow + "_" + $.fish** returns **foo_bar**
-| **$.cow + "_" + fish** returns **foo_fish**
+| ``cow + fish`` returns ``cowfish``
+| ``$.cow + $.fish`` returns ``foobar``
+| ``$.cow + "_" + $.fish`` returns ``foo_bar``
+| ``$.cow + "_" + fish`` returns ``foo_fish``
 
 About arithmetic and list
 -------------------------
@@ -245,7 +246,7 @@ Example with data::
         {'cow': 4, 'cat': 6}
     ]}
 
-| **$.objects[\*].cow + $.objects[\*].cat** returns **[6, 9]**
+| ``$.objects[\*].cow + $.objects[\*].cat`` returns ``[6, 9]``
 
 More to explore
 ---------------
