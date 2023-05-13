@@ -203,9 +203,19 @@ Extensions
 |              | - ``$.objects[\\some_field,/other_field]``    |
 +--------------+-----------------------------------------------+
 | filter       | - ``$.objects[?(@some_field > 5)]``           |
-|              | - ``$.objects[?some_field = "foobar")]``      |
-|              | - ``$.objects[?some_field =~ "foobar")]``     |
-|              | - ``$.objects[?some_field > 5 & other < 2)]`` |
+|              | - ``$.objects[?some_field = "foobar"]``       |
+|              | - ``$.objects[?some_field =~ "foobar"]``      |
+|              | - ``$.objects[?some_field > 5 & other < 2]``  |
+|              |                                               |
+|              | Supported operators:                          |
+|              | - Equality: ==, =, !=                         |
+|              | - Comparison: >, >=, <, <=                    |
+|              | - Regex match: =~                             |
+|              |                                               |
+|              | Combine multiple criteria with '&'.           |
+|              |                                               |
+|              | Properties can only be compared to static     |
+|              | values.                                       |
 +--------------+-----------------------------------------------+
 | arithmetic   | - ``$.foo + "_" + $.bar``                     |
 | (-+*/)       | - ``$.foo * 12``                              |
