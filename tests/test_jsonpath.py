@@ -136,7 +136,7 @@ class TestJsonPath(unittest.TestCase):
 
     def test_slice_value(self):
         self.check_cases([('[*]', [1, 2, 3], [1, 2, 3]),
-                          ('[*]', xrange(1, 4), [1, 2, 3]),
+                          ('[*]', range(1, 4), [1, 2, 3]),
                           ('[1:]', [1, 2, 3, 4], [2, 3, 4]),
                           ('[:2]', [1, 2, 3, 4], [1, 2])])
 
@@ -183,6 +183,7 @@ class TestJsonPath(unittest.TestCase):
 
         for string, data, target in test_cases:
             print('parse("%s").find(%s).paths =?= %s' % (string, data, target))
+            assert hash(parse(string)) == hash(parse(string))
             result = parse(string).find(data)
             if isinstance(target, list):
                 assert [str(r.full_path) for r in result] == target

@@ -333,8 +333,8 @@ limitations under the License.
 
 .. |PyPi downloads| image:: https://pypip.in/d/jsonpath-ng/badge.png
    :target: https://pypi.python.org/pypi/jsonpath-ng
-.. |Build Status| image:: https://travis-ci.org/h2non/jsonpath-ng.svg?branch=master
-   :target: https://travis-ci.org/h2non/jsonpath-ng
+.. |Build Status| image:: https://github.com/h2non/jsonpath-ng/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/h2non/jsonpath-ng/actions/workflows/ci.yml
 .. |PyPI| image:: https://img.shields.io/pypi/v/jsonpath-ng.svg?maxAge=2592000?style=flat-square
    :target: https://pypi.python.org/pypi/jsonpath-ng
 .. |Documentation Status| image:: https://img.shields.io/badge/docs-latest-green.svg?style=flat

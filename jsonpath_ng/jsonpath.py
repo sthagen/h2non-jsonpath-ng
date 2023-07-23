@@ -1,9 +1,6 @@
 from __future__ import unicode_literals, print_function, absolute_import, division, generators, nested_scopes
 import logging
-import six
-from six.moves import xrange
 from itertools import *  # noqa
-from .exceptions import JSONPathError
 
 # Get logger name
 logger = logging.getLogger(__name__)
@@ -220,6 +217,9 @@ class Root(JSONPath):
     def __eq__(self, other):
         return isinstance(other, Root)
 
+    def __hash__(self):
+        return hash('$')
+
 
 class This(JSONPath):
     """
@@ -243,6 +243,9 @@ class This(JSONPath):
 
     def __eq__(self, other):
         return isinstance(other, This)
+
+    def __hash__(self):
+        return hash('this')
 
 
 class Child(JSONPath):
@@ -302,6 +305,9 @@ class Child(JSONPath):
     def __repr__(self):
         return '%s(%r, %r)' % (self.__class__.__name__, self.left, self.right)
 
+    def __hash__(self):
+        return hash((self.left, self.right))
+
 
 class Parent(JSONPath):
     """
@@ -322,6 +328,9 @@ class Parent(JSONPath):
 
     def __repr__(self):
         return 'Parent()'
+
+    def __hash__(self):
+        return hash('parent')
 
 
 class Where(JSONPath):
@@ -356,6 +365,9 @@ class Where(JSONPath):
 
     def __eq__(self, other):
         return isinstance(other, Where) and other.left == self.left and other.right == self.right
+
+    def __hash__(self):
+        return hash((self.left, self.right))
 
 class Descendants(JSONPath):
     """
@@ -469,6 +481,9 @@ class Descendants(JSONPath):
     def __repr__(self):
         return '%s(%r, %r)' % (self.__class__.__name__, self.left, self.right)
 
+    def __hash__(self):
+        return hash((self.left, self.right))
+
 
 class Union(JSONPath):
     """
@@ -490,6 +505,12 @@ class Union(JSONPath):
     def find(self, data):
         return self.left.find(data) + self.right.find(data)
 
+    def __eq__(self, other):
+        return isinstance(other, Union) and self.left == other.left and self.right == other.right
+
+    def __hash__(self):
+        return hash((self.left, self.right))
+
 class Intersect(JSONPath):
     """
     JSONPath for bits that match *both* patterns.
@@ -510,6 +531,12 @@ class Intersect(JSONPath):
 
     def find(self, data):
         raise NotImplementedError()
+
+    def __eq__(self, other):
+        return isinstance(other, Intersect) and self.left == other.left and self.right == other.right
+
+    def __hash__(self):
+        return hash((self.left, self.right))
 
 
 class Fields(JSONPath):
@@ -596,6 +623,9 @@ class Fields(JSONPath):
     def __eq__(self, other):
         return isinstance(other, Fields) and tuple(self.fields) == tuple(other.fields)
 
+    def __hash__(self):
+        return hash(tuple(self.fields))
+
 
 class Index(JSONPath):
     """
@@ -662,6 +692,9 @@ class Index(JSONPath):
             pad = self.index - len(value) + 1
             value += [{} for __ in range(pad)]
 
+    def __hash__(self):
+        return hash(self.index)
+
 
 class Slice(JSONPath):
     """
@@ -700,13 +733,13 @@ class Slice(JSONPath):
             return []
         # Here's the hack. If it is a dictionary or some kind of constant,
         # put it in a single-element list
-        if (isinstance(datum.value, dict) or isinstance(datum.value, six.integer_types) or isinstance(datum.value, six.string_types)):
+        if (isinstance(datum.value, dict) or isinstance(datum.value, int) or isinstance(datum.value, str)):
             return self.find(DatumInContext([datum.value], path=datum.path, context=datum.context))
 
         # Some iterators do not support slicing but we can still
         # at least work for '*'
-        if self.start == None and self.end == None and self.step == None:
-            return [DatumInContext(datum.value[i], path=Index(i), context=datum) for i in xrange(0, len(datum.value))]
+        if self.start is None and self.end is None and self.step is None:
+            return [DatumInContext(datum.value[i], path=Index(i), context=datum) for i in range(0, len(datum.value))]
         else:
             return [DatumInContext(datum.value[i], path=Index(i), context=datum) for i in range(0, len(datum.value))[self.start:self.end:self.step]]
 
@@ -728,7 +761,7 @@ class Slice(JSONPath):
         return data
 
     def __str__(self):
-        if self.start == None and self.end == None and self.step == None:
+        if self.start is None and self.end is None and self.step is None:
             return '[*]'
         else:
             return '[%s%s%s]' % (self.start or '',
@@ -740,6 +773,9 @@ class Slice(JSONPath):
 
     def __eq__(self, other):
         return isinstance(other, Slice) and other.start == self.start and self.end == other.end and other.step == self.step
+
+    def __hash__(self):
+        return hash((self.start, self.end, self.step))
 
 
 def _create_list_key(dict_):
