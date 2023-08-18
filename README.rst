@@ -187,6 +187,8 @@ Extras
 Extensions
 ----------
 
+To use the extensions below you must import from `jsonpath_ng.ext`.
+
 +--------------+-----------------------------------------------+
 | name         | Example                                       |
 +==============+===============================================+
@@ -337,5 +339,3 @@ limitations under the License.
    :target: https://github.com/h2non/jsonpath-ng/actions/workflows/ci.yml
 .. |PyPI| image:: https://img.shields.io/pypi/v/jsonpath-ng.svg?maxAge=2592000?style=flat-square
    :target: https://pypi.python.org/pypi/jsonpath-ng
-.. |Documentation Status| image:: https://img.shields.io/badge/docs-latest-green.svg?style=flat
-   :target: http://jsonpath-ng.readthedocs.io/en/latest/?badge=latest
