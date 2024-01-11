@@ -1,3 +1,53 @@
+1.6.1 / 2024-01-11
+===================
+  * Bump actions/setup-python from 4 to 5
+  * Bump github/codeql-action from 2 to 3
+  * Use tox to run the test suite against all supported Pythons
+  * Fix a typo in the README
+  * Add a test case
+  * Fix issue with lambda based updates
+  * Remove unused code from the test suite
+  * Refactor `tests/test_parser.py`
+  * Refactor `tests/test_lexer.py`
+  * Refactor `tests/test_jsonpath_rw_ext.py`
+  * De-duplicate the parser test cases
+  * Refactor `tests/test_jsonpath.py`
+  * Refactor `tests/test_jsonpath.py`
+  * Refactor `tests/test_exceptions.py`
+  * Remove a test that merely checks exception inheritance
+  * Refactor `tests/test_examples.py`
+  * Add pytest-randomly to shake out auto_id side effects
+  * Bump actions/checkout from 3 to 4
+  * Include the test suite in coverage reports
+  * Remove tests that don't affect coverage and contribute nothing
+  * Reformat `tests/test_create.py`
+  * Remove `test_doctests`, which is a no-op
+  * Demonstrate that there are no doctests
+  * Remove the `coveralls` dependency
+  * Migrate `tests/bin/test_jsonpath.py` to use pytest
+  * remove Python2 crumbs
+  * Add CodeQL analysis
+  * Remove the `oslotest` dependency
+  * Fix running CI against incoming PRs
+  * Support, and test against, Python 3.12
+  * Update the currently-tested CPython versions in the README
+  * Remove an unused Travis CI config file
+  * Add a Dependabot config to keep GitHub action versions updated
+  * add a test for the case when root element is a list
+  * Fix issue with assignment in case root element is a list.
+  * Fix typo in README
+  * Fix test commands in Makefile
+  * Fix .coveragerc path
+  * Simplify clean in Makefile
+  * Refactor unit tests for better errors
+  * test case for existing auto id
+  * Add more examples to README (thanks @baynes)
+  * fixed typo
+  * Don't fail when regex match is attempted on non-strings
+  * added step in slice
+  * Add additional tests
+  * Add `keys` keyword
+
 1.6.0 / 2023-09-13
 ===================
   *  Enclose field names containing literals in quotes
@@ -15,7 +65,7 @@
   *  Use raw strings for regular expressions to avoid DeprecationWarning.
   *  refactor(package): remove dependency for decorator
   *  Merge pull request #128 from michaelmior/hashable
-  *  (origin/hashable, hashable) Make path instances hashable
+  *  Make path instances hashable
   *  Merge pull request #122 from snopoke/snopoke-patch-1
   *  Add more detail to filter docs.
   *  remove incorrect parenthesis in filter examples
