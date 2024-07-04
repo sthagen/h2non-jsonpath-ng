@@ -116,7 +116,7 @@ class JsonPathParser:
 
     def p_jsonpath_idx(self, p):
         "jsonpath : '[' idx ']'"
-        p[0] = p[2]
+        p[0] = Index(*p[2])
 
     def p_jsonpath_slice(self, p):
         "jsonpath : '[' slice ']'"
@@ -132,7 +132,7 @@ class JsonPathParser:
 
     def p_jsonpath_child_idxbrackets(self, p):
         "jsonpath : jsonpath '[' idx ']'"
-        p[0] = Child(p[1], p[3])
+        p[0] = Child(p[1], Index(*p[3]))
 
     def p_jsonpath_child_slicebrackets(self, p):
         "jsonpath : jsonpath '[' slice ']'"
@@ -161,7 +161,11 @@ class JsonPathParser:
 
     def p_idx(self, p):
         "idx : NUMBER"
-        p[0] = Index(p[1])
+        p[0] = [p[1]]
+
+    def p_idx_comma(self, p):
+        "idx : idx ',' idx "
+        p[0] = p[1] + p[3]
 
     def p_slice_any(self, p):
         "slice : '*'"
