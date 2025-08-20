@@ -649,7 +649,7 @@ class Fields(JSONPath):
         return data
 
     def filter(self, fn, data):
-        if data is not None:
+        if data is not None and isinstance(data, dict):
             for field in self.reified_fields(DatumInContext.wrap(data)):
                 if field in data:
                     if fn(data[field]):
@@ -792,11 +792,11 @@ class Slice(JSONPath):
         datum = DatumInContext.wrap(datum)
 
         # Used for catching null value instead of empty list in path
-        if not datum.value:
+        if datum.value is None:
             return []
         # Here's the hack. If it is a dictionary or some kind of constant,
         # put it in a single-element list
-        if (isinstance(datum.value, dict) or isinstance(datum.value, int) or isinstance(datum.value, str)):
+        if (isinstance(datum.value, dict) or isinstance(datum.value, (int, float, str, bool))):
             return self.find(DatumInContext([datum.value], path=datum.path, context=datum.context))
 
         # Some iterators do not support slicing but we can still
