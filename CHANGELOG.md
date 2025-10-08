@@ -1,7 +1,7 @@
 ## [Unreleased]
 
 ## Added
-- Support Python 3.13
+- Support Python 3.13 and 3.14
 - Typing for IDE autocomplete
 - Support for EMOJI and CJK Unicode
 - Support for `DatumInContext` in-place updating
