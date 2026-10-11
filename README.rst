@@ -1,5 +1,5 @@
-Python JSONPath Next-Generation |Build Status| |PyPI|
-=====================================================
+Python JSONPath Next-Generation
+===============================
 
 A final implementation of JSONPath for Python that aims to be standard compliant, including arithmetic
 and binary comparison operators, as defined in the original `JSONPath proposal`_.
@@ -11,7 +11,7 @@ About
 -----
 
 This library provides a robust and significantly extended implementation
-of JSONPath for Python. It is tested with CPython 3.10 and higher.
+of JSONPath for Python.
 
 This library differs from other JSONPath implementations in that it is a
 full *language* implementation, meaning the JSONPath expressions are
@@ -208,46 +208,49 @@ Extensions
 
 To use the extensions below you must import from `jsonpath_ng.ext`.
 
-+--------------+-----------------------------------------------+
-| name         | Example                                       |
-+==============+===============================================+
-| len          | - ``$.objects.`len```                         |
-+--------------+-----------------------------------------------+
-| keys         | - ``$.objects.`keys```                        |
-+--------------+-----------------------------------------------+
-| str          | - ``$.field.`str()```                         |
-+--------------+-----------------------------------------------+
-| sub          | - ``$.field.`sub(/foo\\\\+(.*)/, \\\\1)```    |
-|              | - ``$.field.`sub(/regex/, replacement)```     |
-+--------------+-----------------------------------------------+
-| split        | - ``$.field.`split(+, 2, -1)```               |
-|              | - ``$.field.`split(",", *, -1)```             |
-|              | - ``$.field.`split(' ', -1, -1)```            |
-|              | - ``$.field.`split(sep, segement, maxsplit)```|
-+--------------+-----------------------------------------------+
-| sorted       | - ``$.objects.`sorted```                      |
-|              | - ``$.objects[\\some_field]``                 |
-|              | - ``$.objects[\\some_field,/other_field]``    |
-+--------------+-----------------------------------------------+
-| filter       | - ``$.objects[?(@some_field > 5)]``           |
-|              | - ``$.objects[?some_field = "foobar"]``       |
-|              | - ``$.objects[?some_field =~ "foobar"]``      |
-|              | - ``$.objects[?some_field > 5 & other < 2]``  |
-|              |                                               |
-|              | Supported operators:                          |
-|              | - Equality: ==, =, !=                         |
-|              | - Comparison: >, >=, <, <=                    |
-|              | - Regex match: =~                             |
-|              |                                               |
-|              | Combine multiple criteria with '&'.           |
-|              |                                               |
-|              | Properties can only be compared to static     |
-|              | values.                                       |
-+--------------+-----------------------------------------------+
-| arithmetic   | - ``$.foo + "_" + $.bar``                     |
-| (-+*/)       | - ``$.foo * 12``                              |
-|              | - ``$.objects[*].cow + $.objects[*].cat``     |
-+--------------+-----------------------------------------------+
++--------------+--------------------------------------------------+
+| name         | Example                                          |
++==============+==================================================+
+| len          | - ``$.objects.`len```                            |
++--------------+--------------------------------------------------+
+| keys         | - ``$.objects.`keys```                           |
++--------------+--------------------------------------------------+
+| str          | - ``$.field.`str()```                            |
++--------------+--------------------------------------------------+
+| sub          | - ``$.field.`sub(/foo\\\\+(.*)/, \\\\1)```       |
+|              | - ``$.field.`sub(/regex/, replacement)```        |
++--------------+--------------------------------------------------+
+| split        | - ``$.field.`split(+, 2, -1)```                  |
+|              | - ``$.field.`split(",", *, -1)```                |
+|              | - ``$.field.`split(' ', -1, -1)```               |
+|              | - ``$.field.`split(sep, segment, maxsplit)```    |
++--------------+--------------------------------------------------+
+| sorted       | - ``$.objects.`sorted```                         |
+|              | - ``$.objects[\\some_field]``                    |
+|              | - ``$.objects[\\some_field,/other_field]``       |
++--------------+--------------------------------------------------+
+| filter       | - ``$.objects[?(@.some_field > 5)]``             |
+|              | - ``$.objects[?(@.some_field = "foobar")]``      |
+|              | - ``$.objects[?(@.some_field =~ "foobar")]``     |
+|              | - ``$.objects[?(@.some_field > 5 & other < 2)]`` |
+|              | - ``$.objects[?!@.some_field]``                  |
+|              |                                                  |
+|              | Supported operators:                             |
+|              |                                                  |
+|              | - Equality: ``==``, ``=``, ``!=``                |
+|              | - Comparison: ``>``, ``>=``, ``<``, ``<=``       |
+|              | - Regex match: ``=~``                            |
+|              | - Existence negation: ``!``                      |
+|              |                                                  |
+|              | Combine multiple criteria with ``&``.            |
+|              |                                                  |
+|              | Properties can only be compared to static        |
+|              | values.                                          |
++--------------+--------------------------------------------------+
+| arithmetic   | - ``$.foo + "_" + $.bar``                        |
+| (-+*/)       | - ``$.foo * 12``                                 |
+|              | - ``$.objects[*].cow + $.objects[*].cat``        |
++--------------+--------------------------------------------------+
 
 About arithmetic and string
 ---------------------------
@@ -328,10 +331,9 @@ Contributors
 This package is authored and maintained by:
 
 -  `Kenn Knowles <https://github.com/kennknowles>`__
-   (`@kennknowles <https://twitter.com/KennKnowles>`__)
--  `Tomas Aparicio <https://github.com/h2non>`
+-  `Tomas Aparicio <https://github.com/h2non>`__
 
-with the help of patches submitted by `these contributors <https://github.com/kennknowles/python-jsonpath-ng/graphs/contributors>`__.
+with the help of patches submitted by `these contributors <https://github.com/jsonpath-ng/jsonpath-ng/graphs/contributors>`__.
 
 Copyright and License
 ---------------------
@@ -357,10 +359,3 @@ limitations under the License.
 .. _`JSONPath proposal`: http://goessner.net/articles/JsonPath/
 .. _`jsonpath-rw`: https://github.com/kennknowles/python-jsonpath-rw
 .. _`jsonpath-rw-ext`: https://pypi.python.org/pypi/jsonpath-rw-ext/
-
-.. |PyPi downloads| image:: https://pypip.in/d/jsonpath-ng/badge.png
-   :target: https://pypi.python.org/pypi/jsonpath-ng
-.. |Build Status| image:: https://github.com/h2non/jsonpath-ng/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/h2non/jsonpath-ng/actions/workflows/ci.yml
-.. |PyPI| image:: https://img.shields.io/pypi/v/jsonpath-ng.svg?maxAge=2592000?style=flat-square
-   :target: https://pypi.python.org/pypi/jsonpath-ng
